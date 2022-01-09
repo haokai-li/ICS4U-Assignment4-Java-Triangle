@@ -14,23 +14,6 @@ import java.util.Scanner;
 */
 final class Main {
     /**
-    * The zero.
-    */
-    private static final int ZERO = 0;
-    /**
-    * The two hundred.
-    */
-    private static final int TWOOO = 200;
-    /**
-    * The five hundred.
-    */
-    private static final int FIVEOO = 500;
-    /**
-    * The spare.
-    */
-    private static final String SPARE = "\n";
-
-    /**
     * Prevent instantiation.
     * Throw an exception IllegalStateException.
     * if this ever is called
@@ -48,30 +31,30 @@ final class Main {
     * @param args No args will be used
     */
     public static void main(final String[] args) {
-        final Truck aStack1 = new Truck(TWOOO, TWOOO);
+        final Triangle aStack1 = new Triangle();
         final Scanner userInput1 = new Scanner(System.in);
 
-        System.out.print(
-            "Please enter the License plate number of the truck: "
-        );
-        final String licensePlateNumber = userInput1.nextLine();
-        aStack1.setLicense(licensePlateNumber);
+        System.out.print("Please enter length the A side: ");
+        final int aLength = userInput1.nextInt();
+        aStack1.setAaSide(aLength);
 
-        System.out.print(
-            "Please enter the Colour of the truck: "
-        );
-        final String color = userInput1.nextLine();
-        aStack1.setColour(color);
+        System.out.print("Please enter length the B side: ");
+        final int bLength = userInput1.nextInt();
+        aStack1.setBbSide(bLength);
 
-        System.out.println(SPARE
-                           + "license Plate Number:  " + aStack1.getLicense()
-                           + SPARE
-                           + "Colour:  " + aStack1.getColour()
-                           + SPARE
-                           + "Speed:  " + aStack1.getSpeed()
-                           + SPARE
-                           + "Max Speed:  " + aStack1.getMaxSpeed()
-                           + SPARE);
+        System.out.print("Please enter length the C side: ");
+        final int cLength = userInput1.nextInt();
+        aStack1.setCcSide(cLength);
+
+        if (aStack1.check()) {
+            System.out.println("Area: " + aStack1.area()
+                             + "\n"
+                             + "Perimeter: " + aStack1.perimeter());
+            aStack1.putAngles();
+            aStack1.type();
+        } else {
+            System.out.println("This triangle is not valid");
+        }
 
         System.out.println("\nDone.");
     }

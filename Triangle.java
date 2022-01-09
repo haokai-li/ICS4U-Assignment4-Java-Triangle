@@ -7,12 +7,19 @@
 *
 */
 
-import java.util.Math;
-
 /**
 * This is the standard "lock" program.
 */
-public class Vehicle {
+public class Triangle {
+    /**
+    * The space.
+    */
+    private static final String SPACE = "\n";
+    /**
+    * The ninety.
+    */
+    private static final int NINETY = 90;
+
     /**
     * A side.
     */
@@ -45,7 +52,7 @@ public class Vehicle {
     * @param aSideInput A side
     *
     */
-    public void setASide(final double aSideInput) {
+    public void setAaSide(final double aSideInput) {
         this.aSide = aSideInput;
     }
 
@@ -55,7 +62,7 @@ public class Vehicle {
     * @param bSideInput B side
     *
     */
-    public void setBSide(final double bSideInput) {
+    public void setBbSide(final double bSideInput) {
         this.bSide = bSideInput;
     }
 
@@ -65,7 +72,7 @@ public class Vehicle {
     * @param cSideInput C side
     *
     */
-    public void setCSide(final double cSideInput) {
+    public void setCcSide(final double cSideInput) {
         this.cSide = cSideInput;
     }
 
@@ -76,21 +83,21 @@ public class Vehicle {
     */
     public boolean check() {
         boolean checkPut = true;
-        double aCheck = this.bSide + this.cSide;
-        double bCheck = this.aSide + this.cSide;
-        double cCheck = this.aSide + this.bSide;
+        final double aCheck = this.bSide + this.cSide;
+        final double bCheck = this.aSide + this.cSide;
+        final double cCheck = this.aSide + this.bSide;
         if (this.aSide <= 0) {
-            checkPut  = false;
+            checkPut = false;
         } else if (this.bSide <= 0) {
-            checkPut  = false;
+            checkPut = false;
         } else if (this.cSide <= 0) {
-            checkPut  = false;
-        } else if (aCheck >= this.aSide) {
-            checkPut  = false;
-        } else if (bCheck >= this.bSide) {
-            checkPut  = false;
-        } else if (cCheck >= this.cSide) {
-            checkPut  = false;
+            checkPut = false;
+        } else if (aCheck <= this.aSide) {
+            checkPut = false;
+        } else if (bCheck <= this.bSide) {
+            checkPut = false;
+        } else if (cCheck <= this.cSide) {
+            checkPut = false;
         }
         return checkPut;
     }
@@ -101,46 +108,46 @@ public class Vehicle {
     * @return area
     */
     public double area() {
-        sem = (this.aSide + this.bSide + this.cSide) / 2;
+        final double sem = (this.aSide + this.bSide + this.cSide) / 2;
 
-        double areaPut = Math.sqrt(sem *(sem - this.aSide)
-                                   * (sem - this.bSide)
-                                   * (sem - this.cSide));
-        return areaPut 
+        final double areaPut = Math.sqrt(sem * (sem - this.aSide)
+                                         * (sem - this.bSide)
+                                         * (sem - this.cSide));
+        return Math.round(areaPut);
     }
 
     /**
     * Calculate perimeter.
     *
-    * @return 
+    * @return perimeter
     */
     public double perimeter() {
-        double perimeterPut = this.aSide + this.bSide + this.cSide;
-        return perimeterPut;
+        final double perimeterPut = this.aSide + this.bSide + this.cSide;
+        return Math.round(perimeterPut);
     }
 
     /**
-    * Set colour.
+    * Angle.
     */
     public void putAngles() {
-        double cosA = ((Math.pow(this.bSide) + Math.pow(this.cSide)
-                       - Math.pow(this.aSide)) 
-                       / (2 * this.bSide * this.cSide));
-        double cosB = ((Math.pow(this.aSide) + Math.pow(this.cSide)
-                       - Math.pow(this.bSide))
-                       / (2 * this.aSide * this.cSide));
-        double cosC = ((Math.pow(this.aSide) + Math.pow(this.bSide)
-                       - Math.pow(this.cSide))
-                       / (2 * this.aSide * this.bSide));
-        this.aAngle = Math.toDegrees(Math.asin(cosA));
-        this.bAngle = Math.toDegrees(Math.asin(cosB));
-        this.cAngle = Math.toDegrees(Math.asin(cosC));
-        System.out.println("\n"
-                           + "Angle a: " + this.aAngle
-                           + "\n"
-                           + "Angle b: " + this.bAngle
-                           + "\n"
-                           + "Angle c: " + this.cAngle
+        final double cosA = (Math.pow(this.bSide, 2) + Math.pow(this.cSide, 2)
+                       - Math.pow(this.aSide, 2))
+                       / (2 * this.bSide * this.cSide);
+        final double cosB = (Math.pow(this.aSide, 2) + Math.pow(this.cSide, 2)
+                       - Math.pow(this.bSide, 2))
+                       / (2 * this.aSide * this.cSide);
+        final double cosC = (Math.pow(this.aSide, 2) + Math.pow(this.bSide, 2)
+                       - Math.pow(this.cSide, 2))
+                       / (2 * this.aSide * this.bSide);
+        this.aAngle = Math.toDegrees(Math.acos(cosA));
+        this.bAngle = Math.toDegrees(Math.acos(cosB));
+        this.cAngle = Math.toDegrees(Math.acos(cosC));
+        System.out.println(SPACE
+                           + "Angle a: " + Math.round(this.aAngle)
+                           + SPACE
+                           + "Angle b: " + Math.round(this.bAngle)
+                           + SPACE
+                           + "Angle c: " + Math.round(this.cAngle)
         );
     }
 
@@ -148,22 +155,22 @@ public class Vehicle {
     * Type.
     */
     public void type() {
-        if (this.aSide = this.bSide && this.bSide = this.cSide) {
+        if (this.aSide == this.bSide && this.bSide == this.cSide) {
             System.out.println("It is Equilateral Triangle.");
-        } else if (this.aSide = this.bSide
-            || this.aSide = this.cSide
-            || this.bSide = this.cSide) {
+        } else if (this.aSide == this.bSide
+            || this.aSide == this.cSide
+            || this.bSide == this.cSide) {
             System.out.println("It is Isosceles Triangle.");
         } else {
             System.out.println("It is Scalene Triangle.");
         }
-        if (this.aAngle < 90
-            && this.bAngle < 90
-            && this.cAngle < 90) {
+        if (this.aAngle < NINETY
+            && this.bAngle < NINETY
+            && this.cAngle < NINETY) {
             System.out.println("It is Acute-Angled Triangle.");
-        } else if (this.aAngle > 90
-                   || this.bAngle > 90
-                   || this.cAngle > 90) {
+        } else if (this.aAngle > NINETY
+                   || this.bAngle > NINETY
+                   || this.cAngle > NINETY) {
             System.out.println("It is Obtuse-Angled Triangle.");
         } else {
             System.out.println("It is Right-Angled Triangle.");
