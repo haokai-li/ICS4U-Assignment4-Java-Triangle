@@ -47,9 +47,10 @@ final class Main {
         aStack1.setCcSide(cLength);
 
         if (aStack1.check()) {
-            System.out.println("Area: " + aStack1.area()
+            System.out.println("Area: " + Math.round(aStack1.area())
                              + "\n"
-                             + "Perimeter: " + aStack1.perimeter());
+                             + "Perimeter: " + Math.round(aStack1.perimeter())
+            );
             aStack1.putAngles();
             aStack1.type();
         } else {

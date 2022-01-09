@@ -113,7 +113,7 @@ public class Triangle {
         final double areaPut = Math.sqrt(sem * (sem - this.aSide)
                                          * (sem - this.bSide)
                                          * (sem - this.cSide));
-        return Math.round(areaPut);
+        return areaPut;
     }
 
     /**
@@ -123,7 +123,7 @@ public class Triangle {
     */
     public double perimeter() {
         final double perimeterPut = this.aSide + this.bSide + this.cSide;
-        return Math.round(perimeterPut);
+        return perimeterPut;
     }
 
     /**
